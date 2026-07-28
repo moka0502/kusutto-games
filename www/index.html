@@ -57,12 +57,23 @@
     <button class="btn-text back-to-home">← ホームへ</button>
   </header>
 
-  <div class="lottery-body">
-    <p class="lottery-eyebrow">宝くじ1等が当たる確率は…</p>
-    <p class="lottery-text" id="lottery-text">読み込み中…</p>
+  <div class="mode-switch" id="lottery-mode-switch">
+    <button class="mode-chip active" data-mode="general" type="button">一般</button>
+    <button class="mode-chip" data-mode="gambler" type="button">ギャンブラー</button>
   </div>
 
-  <button id="lottery-next" class="btn-primary btn-large">次のいいかえ →</button>
+  <div class="lottery-puzzle-card">
+    <p class="lottery-target-label" id="lottery-target-label">読み込み中…</p>
+    <p class="lottery-sentence" id="lottery-sentence"></p>
+    <button id="lottery-check" class="btn-primary btn-large" disabled>確かめる</button>
+  </div>
+
+  <div class="lottery-answer hidden" id="lottery-answer">
+    <p class="lottery-answer-verdict" id="lottery-answer-verdict"></p>
+    <div class="lottery-breakdown" id="lottery-breakdown"></div>
+    <p class="lottery-ratio hidden" id="lottery-ratio"></p>
+    <button id="lottery-next" class="btn-primary btn-large">次の問題へ</button>
+  </div>
 </section>
 
 <!-- 画面: ことわざクイズ -->

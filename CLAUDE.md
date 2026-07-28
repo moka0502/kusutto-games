@@ -14,9 +14,11 @@
 
 ## データスキーマ(一次情報源はこのファイル)
 
-- `www/data/lottery-comparisons.json`: `{ id, category, text }[]`。`category` は将来の「ギャンブラー編」等トーン違いバリエーション用のフィルタキー
+- `www/data/lottery-targets.json`: `{ id, label, odds, note }[]`。宝くじ側のターゲット(ジャンボ宝くじ・ロト等)。`odds`は分母の数値(確率1/oddsのoddsの部分)、`note`に出典を明記する
+- `www/data/lottery-components.json`: `{ id, mode: "general"|"gambler", label, odds, note }[]`。言い換えに使う事象プール。実在の確率(パチンコ実機の公表スペック、隕石死亡等の統計)のみを使い、出典不明・非公式の数値(例: 「魚群予告」のような演出上の体感確率)は採用しない
+- `www/data/lottery-puzzles.json`: `{ id, mode, targetId, componentIds }[]`。一般モードは`componentIds`が1件(単一事象との直接比較)、ギャンブラーモードは2件(掛け算)。**掛け算の積は宝くじの確率と厳密に一致しない**(パチンコ実機odds同士を掛けても最大1/16万程度にしかならず、宝くじの1/1000万規模には届かない)。これは意図的な設計で、「宝くじの方がまだ何倍当たりにくいか」という気づきの演出として扱う(`www/js/games/lottery.js`の`checkAnswer()`内で実行時に算出、JSON側に倍率を持たせない)
 - `www/data/proverb-quiz.json`: `{ id, situation, choices: string[4], answerIndex }[]`。4択固定(自由記述の表記ゆれ判定は運用コストに見合わないため採用しない)。選択肢はプールからのランダム抽出ではなく問題ごとに手書き固定
-- `www/data/bangs-scenarios.json`: `{ id, beforeLength, afterLength, changed, teaseLine }[]`。前髪の状態は実写画像でなく数値+テキストで表現(画像アセット制作コストをゼロにするため)
+- `www/data/bangs-scenarios.json`: `{ id, beforeLength, afterLength, changed, teaseLine }[]`。前髪の状態は実写画像でなく数値+テキストで表現(画像アセット制作コストをゼロにするため)。次フェーズでSVG自作キャラクター+難易度10段階への刷新を予定
 
 ## 検証方法
 

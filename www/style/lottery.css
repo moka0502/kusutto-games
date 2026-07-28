@@ -1,25 +1,124 @@
-.lottery-body {
-  flex: 1;
+.mode-switch {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 14px;
-  text-align: center;
-  padding: 24px 4px;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px;
 }
 
-.lottery-eyebrow {
+.mode-chip {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 9px 12px;
+  border-radius: 999px;
+}
+
+.mode-chip.active {
+  background: var(--accent);
+  color: #fff8ed;
+}
+
+.lottery-puzzle-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lottery-target-label {
   font-size: 13px;
-  color: var(--ink-faint);
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  color: var(--accent-dark);
   margin: 0;
 }
 
-.lottery-text {
-  font-size: 21px;
-  font-weight: 700;
-  line-height: 1.6;
+.lottery-sentence {
+  font-size: 16px;
+  line-height: 2.1;
   color: var(--ink);
+  margin: 0;
+}
+
+.blank-select {
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  border: 1px dashed var(--accent);
+  border-radius: 8px;
+  padding: 3px 8px;
+  margin: 0 2px;
+}
+
+/* ---- Answer ---- */
+.lottery-answer {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lottery-answer-verdict {
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+}
+
+.lottery-answer-verdict.is-correct { color: var(--good); }
+.lottery-answer-verdict.is-wrong { color: var(--bad); }
+
+.lottery-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.breakdown-item {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.breakdown-item .breakdown-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 2px;
+}
+
+.breakdown-item .breakdown-odds {
+  font-size: 13px;
+  color: var(--accent-dark);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 4px;
+}
+
+.breakdown-item .breakdown-note {
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.lottery-ratio {
+  background: var(--accent-soft);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--accent-dark);
+  text-align: center;
   margin: 0;
 }
