@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "「くすっと系」ミニゲームバンドル",
   "scripts": {
-    "dev": "serve www -l 3000"
+    "dev": "serve www -l 4321"
   },
   "devDependencies": {
     "serve": "^14"

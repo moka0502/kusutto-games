@@ -1,19 +1,34 @@
+import { showResult } from '../common/result.js';
+import { showScreen } from '../common/screens.js';
+
+const SET_SIZE = 5;
+
 let targets = [];
 let components = [];
 let puzzles = [];
 let loaded = false;
 
-let currentMode = 'general';
+let sessionMode = 'general';
+let session = [];
+let currentIndex = 0;
+let firstTryCorrectCount = 0;
+
 let currentPuzzle = null;
 let selections = [];
-let lastPuzzleIdByMode = {};
+let attemptedOnce = false;
 
-const modeSwitchEl = document.getElementById('lottery-mode-switch');
+const modeSelectEl = document.getElementById('lottery-mode-select');
+const playEl = document.getElementById('lottery-play');
+const progressEl = document.getElementById('lottery-progress');
 const targetLabelEl = document.getElementById('lottery-target-label');
 const sentenceEl = document.getElementById('lottery-sentence');
 const checkBtn = document.getElementById('lottery-check');
 const answerEl = document.getElementById('lottery-answer');
 const verdictEl = document.getElementById('lottery-answer-verdict');
+const wrongActionsEl = document.getElementById('lottery-wrong-actions');
+const retryBtn = document.getElementById('lottery-retry');
+const revealBtn = document.getElementById('lottery-reveal');
+const breakdownSectionEl = document.getElementById('lottery-breakdown-section');
 const breakdownEl = document.getElementById('lottery-breakdown');
 const ratioEl = document.getElementById('lottery-ratio');
 const nextBtn = document.getElementById('lottery-next');
@@ -31,9 +46,28 @@ async function loadData() {
   loaded = true;
 }
 
+function roundToSignificant(n, sig) {
+  if (n === 0) return 0;
+  const magnitude = Math.pow(10, Math.floor(Math.log10(Math.abs(n))) - (sig - 1));
+  return Math.round(n / magnitude) * magnitude;
+}
+
+function toJapaneseApprox(n) {
+  const rounded = roundToSignificant(n, 2);
+  if (rounded >= 1e8) {
+    const v = rounded / 1e8;
+    return `${Number.isInteger(v) ? v : v.toFixed(1)}億`;
+  }
+  if (rounded >= 1e4) {
+    const v = rounded / 1e4;
+    return `${Number.isInteger(v) ? v : v.toFixed(1)}万`;
+  }
+  return rounded.toLocaleString('ja-JP');
+}
+
 function formatOdds(odds) {
   const rounded = Math.round(odds);
-  return `1/${rounded.toLocaleString('ja-JP')}`;
+  return `1/${rounded.toLocaleString('ja-JP')}(${toJapaneseApprox(rounded)}分の1)`;
 }
 
 function findTarget(id) {
@@ -53,16 +87,17 @@ function shuffle(array) {
   return a;
 }
 
-function pickPuzzle(mode) {
-  const pool = puzzles.filter((p) => p.mode === mode);
-  let puzzle = pool[Math.floor(Math.random() * pool.length)];
-  if (pool.length > 1) {
-    while (puzzle.id === lastPuzzleIdByMode[mode]) {
-      puzzle = pool[Math.floor(Math.random() * pool.length)];
+function buildSession(mode) {
+  const pool = mode === 'mix' ? puzzles : puzzles.filter((p) => p.mode === mode);
+  const shuffled = shuffle(pool);
+  const picked = [];
+  while (picked.length < SET_SIZE) {
+    for (const p of shuffled) {
+      if (picked.length >= SET_SIZE) break;
+      picked.push(p);
     }
   }
-  lastPuzzleIdByMode[mode] = puzzle.id;
-  return puzzle;
+  return picked;
 }
 
 function buildBlankSelect(optionsPool, blankIndex) {
@@ -96,11 +131,15 @@ function renderPuzzle() {
   const target = findTarget(puzzle.targetId);
   const pool = components.filter((c) => c.mode === puzzle.mode);
 
+  attemptedOnce = false;
   targetLabelEl.textContent = `${target.label}が当たる確率は ${formatOdds(target.odds)}`;
 
   selections = new Array(puzzle.componentIds.length).fill(null);
   checkBtn.disabled = true;
+  checkBtn.classList.remove('hidden');
   answerEl.classList.add('hidden');
+  wrongActionsEl.classList.add('hidden');
+  breakdownSectionEl.classList.add('hidden');
   verdictEl.classList.remove('is-correct', 'is-wrong');
 
   sentenceEl.innerHTML = '';
@@ -133,19 +172,10 @@ function renderBreakdown(componentIds) {
   }
 }
 
-function checkAnswer() {
+function showBreakdownAndRatio() {
   const puzzle = currentPuzzle;
   const target = findTarget(puzzle.targetId);
   const correctIds = puzzle.componentIds;
-
-  const isCorrect =
-    selections.length === correctIds.length &&
-    new Set(selections).size === selections.length &&
-    selections.every((id) => correctIds.includes(id));
-
-  verdictEl.textContent = isCorrect ? '正解！🎯' : '不正解…';
-  verdictEl.classList.toggle('is-correct', isCorrect);
-  verdictEl.classList.toggle('is-wrong', !isCorrect);
 
   renderBreakdown(correctIds);
 
@@ -160,31 +190,98 @@ function checkAnswer() {
     ratioEl.textContent = `こちらの方が、宝くじよりまだ約${Math.round(1 / ratio).toLocaleString('ja-JP')}倍当たりやすいです。`;
   }
 
-  answerEl.classList.remove('hidden');
+  wrongActionsEl.classList.add('hidden');
+  breakdownSectionEl.classList.remove('hidden');
 }
 
-function nextPuzzle() {
-  currentPuzzle = pickPuzzle(currentMode);
+function checkAnswer() {
+  const puzzle = currentPuzzle;
+  const correctIds = puzzle.componentIds;
+
+  const isCorrect =
+    selections.length === correctIds.length &&
+    new Set(selections).size === selections.length &&
+    selections.every((id) => correctIds.includes(id));
+
+  checkBtn.classList.add('hidden');
+  answerEl.classList.remove('hidden');
+  verdictEl.classList.toggle('is-correct', isCorrect);
+  verdictEl.classList.toggle('is-wrong', !isCorrect);
+
+  if (isCorrect) {
+    verdictEl.textContent = '正解！🎯';
+    if (!attemptedOnce) firstTryCorrectCount += 1;
+    showBreakdownAndRatio();
+    return;
+  }
+
+  attemptedOnce = true;
+  verdictEl.textContent = '不正解…';
+  breakdownSectionEl.classList.add('hidden');
+  wrongActionsEl.classList.remove('hidden');
+}
+
+function retryPuzzle() {
   renderPuzzle();
 }
 
-modeSwitchEl.querySelectorAll('.mode-chip').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    if (btn.dataset.mode === currentMode) return;
-    modeSwitchEl.querySelectorAll('.mode-chip').forEach((b) => b.classList.toggle('active', b === btn));
-    currentMode = btn.dataset.mode;
-    nextPuzzle();
+function revealAnswer() {
+  showBreakdownAndRatio();
+}
+
+function nextPuzzle() {
+  currentIndex += 1;
+  if (currentIndex >= session.length) {
+    finishSet();
+    return;
+  }
+  currentPuzzle = session[currentIndex];
+  progressEl.textContent = `${currentIndex + 1} / ${session.length}`;
+  renderPuzzle();
+}
+
+function finishSet() {
+  const total = session.length;
+  const rate = Math.round((firstTryCorrectCount / total) * 100);
+  showResult({
+    emoji: rate >= 80 ? '🎯' : rate >= 40 ? '🤔' : '💸',
+    title: `${firstTryCorrectCount} / ${total} 問を自力で正解`,
+    message: `正答率 ${rate}%(回答を見た問題は除く)`,
+    teaseLine: rate === 100 ? '確率の感覚、だいぶ研ぎ澄まされてます。' : '宝くじの確率、体感できてきましたか？',
+    variant: rate >= 80 ? 'good' : rate < 40 ? 'bad' : 'neutral',
+    onRetry: () => {
+      showScreen('screen-lottery');
+      mountLottery();
+    },
   });
+}
+
+function startSet(mode) {
+  sessionMode = mode;
+  session = buildSession(mode);
+  currentIndex = 0;
+  firstTryCorrectCount = 0;
+  currentPuzzle = session[0];
+  progressEl.textContent = `${currentIndex + 1} / ${session.length}`;
+  progressEl.classList.remove('hidden');
+
+  modeSelectEl.classList.add('hidden');
+  playEl.classList.remove('hidden');
+  renderPuzzle();
+}
+
+modeSelectEl.querySelectorAll('.mode-card').forEach((btn) => {
+  btn.addEventListener('click', () => startSet(btn.dataset.mode));
 });
 
 checkBtn.addEventListener('click', checkAnswer);
+retryBtn.addEventListener('click', retryPuzzle);
+revealBtn.addEventListener('click', revealAnswer);
 nextBtn.addEventListener('click', nextPuzzle);
 
 export async function mountLottery() {
-  targetLabelEl.textContent = '読み込み中…';
-  sentenceEl.textContent = '';
   await loadData();
-  currentMode = 'general';
-  modeSwitchEl.querySelectorAll('.mode-chip').forEach((b) => b.classList.toggle('active', b.dataset.mode === 'general'));
-  nextPuzzle();
+  playEl.classList.add('hidden');
+  progressEl.classList.add('hidden');
+  modeSelectEl.classList.remove('hidden');
 }

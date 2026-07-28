@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "kusutto-web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "www", "-l", "4321"],
+      "port": 4321,
+      "autoPort": false
+    }
+  ]
+}
