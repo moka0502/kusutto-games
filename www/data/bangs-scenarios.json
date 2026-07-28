@@ -1,10 +1,50 @@
 [
-  { "id": "s01", "beforeLength": 40, "afterLength": 40, "changed": false, "teaseLine": "…え、見間違えた？その集中力、他で使おう？" },
-  { "id": "s02", "beforeLength": 40, "afterLength": 55, "changed": true,  "teaseLine": "伸びてます。もう少し人をよく見て。" },
-  { "id": "s03", "beforeLength": 55, "afterLength": 55, "changed": false, "teaseLine": "そう、変わってません。自信持っていいですよ。" },
-  { "id": "s04", "beforeLength": 35, "afterLength": 41, "changed": true,  "teaseLine": "たった6ミリの変化、よく気づきましたね…って気づいてました？" },
-  { "id": "s05", "beforeLength": 60, "afterLength": 45, "changed": true,  "teaseLine": "切ったんです。伸びたんじゃなくて切ったんです。" },
-  { "id": "s06", "beforeLength": 45, "afterLength": 45, "changed": false, "teaseLine": "本当に何も変わってません。むしろ聞かれて動揺したでしょう。" },
-  { "id": "s07", "beforeLength": 30, "afterLength": 50, "changed": true,  "teaseLine": "だいぶ伸びてます。前髪、そろそろ限界では。" },
-  { "id": "s08", "beforeLength": 65, "afterLength": 63, "changed": false, "teaseLine": "誤差の範囲です。変わってないと言っていいでしょう。" }
+  {
+    "id": "d01",
+    "before": { "hairLength": 40, "topColor": "#e07a5f", "shoeColor": "#3d405b", "bagColor": "#81b29a" },
+    "changedAttr": "hairLength", "changedTo": 55,
+    "teaseLine": "伸びてます…じゃなくて切ったんですね。地味な変化、よく見てました。"
+  },
+  {
+    "id": "d02",
+    "before": { "hairLength": 45, "topColor": "#e07a5f", "shoeColor": "#3d405b", "bagColor": "#81b29a" },
+    "changedAttr": "topColor", "changedTo": "#f2cc8f",
+    "teaseLine": "服の色、赤系からベージュに変わってます。よく見てましたね。"
+  },
+  {
+    "id": "d03",
+    "before": { "hairLength": 50, "topColor": "#457b9d", "shoeColor": "#3d405b", "bagColor": "#81b29a" },
+    "changedAttr": "shoeColor", "changedTo": "#98c1d9",
+    "teaseLine": "靴の色が紺から水色に変わってます。地味に見落としがちです。"
+  },
+  {
+    "id": "d04",
+    "before": { "hairLength": 42, "topColor": "#f4a261", "shoeColor": "#3d405b", "bagColor": "#81b29a" },
+    "changedAttr": "bagColor", "changedTo": "#e07a5f",
+    "teaseLine": "かばんの色が変わってます。中身より色を見てくださいね。"
+  },
+  {
+    "id": "d05",
+    "before": { "hairLength": 60, "topColor": "#2a9d8f", "shoeColor": "#adb5bd", "bagColor": "#457b9d" },
+    "changedAttr": "hairLength", "changedTo": 48,
+    "teaseLine": "切ってました。伸びたんじゃなくて短くなってます。"
+  },
+  {
+    "id": "d06",
+    "before": { "hairLength": 48, "topColor": "#f4a261", "shoeColor": "#adb5bd", "bagColor": "#457b9d" },
+    "changedAttr": "topColor", "changedTo": "#2a9d8f",
+    "teaseLine": "服がオレンジから緑に変わってます。"
+  },
+  {
+    "id": "d07",
+    "before": { "hairLength": 52, "topColor": "#2a9d8f", "shoeColor": "#adb5bd", "bagColor": "#457b9d" },
+    "changedAttr": "shoeColor", "changedTo": "#e63946",
+    "teaseLine": "靴が赤に変わってます。派手なのに、逆に気づきにくいものです。"
+  },
+  {
+    "id": "d08",
+    "before": { "hairLength": 46, "topColor": "#e9c46a", "shoeColor": "#3d405b", "bagColor": "#457b9d" },
+    "changedAttr": "bagColor", "changedTo": "#f4a261",
+    "teaseLine": "かばんが青からオレンジに。よく見てましたね。"
+  }
 ]

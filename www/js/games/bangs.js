@@ -3,6 +3,14 @@ import { showScreen } from '../common/screens.js';
 
 const MEMORIZE_SECONDS = 5;
 
+const ATTR_ORDER = ['hairLength', 'topColor', 'shoeColor', 'bagColor'];
+const ATTR_LABEL = {
+  hairLength: '前髪切った',
+  topColor: '服の色が変わった',
+  shoeColor: '靴の色が変わった',
+  bagColor: 'かばんの色が変わった',
+};
+
 let scenarios = [];
 let loaded = false;
 let current = null;
@@ -10,11 +18,10 @@ let countdownTimer = null;
 
 const instructionEl = document.getElementById('bangs-instruction');
 const timerEl = document.getElementById('bangs-timer');
-const beforeVisualEl = document.getElementById('bangs-visual-before');
-const afterVisualEl = document.getElementById('bangs-visual-after');
+const beforeAvatarEl = document.getElementById('bangs-avatar-before');
+const afterAvatarEl = document.getElementById('bangs-avatar-after');
 const judgeGroupEl = document.getElementById('bangs-judge-group');
-const judgeChangedBtn = document.getElementById('bangs-judge-changed');
-const judgeSameBtn = document.getElementById('bangs-judge-same');
+const choicesEl = document.getElementById('bangs-choices');
 
 async function loadData() {
   if (loaded) return;
@@ -23,18 +30,27 @@ async function loadData() {
   loaded = true;
 }
 
-function setVisualLength(el, length) {
-  el.style.setProperty('--bangs-length', length);
+function applyAvatar(el, attrs) {
+  el.style.setProperty('--bangs-length', attrs.hairLength);
+  el.style.setProperty('--top-color', attrs.topColor);
+  el.style.setProperty('--shoe-color', attrs.shoeColor);
+  el.style.setProperty('--bag-color', attrs.bagColor);
+}
+
+function buildAfter(scenario) {
+  const after = { ...scenario.before };
+  after[scenario.changedAttr] = scenario.changedTo;
+  return after;
 }
 
 function startMemorizePhase() {
   judgeGroupEl.classList.add('hidden');
   instructionEl.classList.remove('hidden');
   timerEl.classList.remove('hidden');
-  beforeVisualEl.classList.remove('hidden');
+  beforeAvatarEl.classList.remove('hidden');
 
-  setVisualLength(beforeVisualEl, current.beforeLength);
-  window.gsap?.fromTo(beforeVisualEl, { opacity: 0, y: -6 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' });
+  applyAvatar(beforeAvatarEl, current.before);
+  window.gsap?.fromTo(beforeAvatarEl, { opacity: 0, y: -6 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' });
 
   let remaining = MEMORIZE_SECONDS;
   timerEl.textContent = String(remaining);
@@ -55,9 +71,20 @@ function startMemorizePhase() {
 function startJudgePhase() {
   instructionEl.classList.add('hidden');
   timerEl.classList.add('hidden');
-  beforeVisualEl.classList.add('hidden');
+  beforeAvatarEl.classList.add('hidden');
   judgeGroupEl.classList.remove('hidden');
-  setVisualLength(afterVisualEl, current.afterLength);
+
+  applyAvatar(afterAvatarEl, buildAfter(current));
+
+  choicesEl.innerHTML = '';
+  ATTR_ORDER.forEach((attr) => {
+    const btn = document.createElement('button');
+    btn.className = 'bangs-choice';
+    btn.type = 'button';
+    btn.textContent = ATTR_LABEL[attr];
+    btn.addEventListener('click', () => handleJudge(attr));
+    choicesEl.appendChild(btn);
+  });
 
   window.gsap?.fromTo(
     judgeGroupEl,
@@ -66,12 +93,12 @@ function startJudgePhase() {
   );
 }
 
-function handleJudge(guessChanged) {
-  const isCorrect = guessChanged === current.changed;
+function handleJudge(guessAttr) {
+  const isCorrect = guessAttr === current.changedAttr;
   showResult({
     emoji: isCorrect ? '👀' : '😳',
     title: isCorrect ? '正解！' : '不正解…',
-    message: current.changed ? '実は伸びてました。' : '実は変わっていませんでした。',
+    message: `実は${ATTR_LABEL[current.changedAttr]}んです。`,
     teaseLine: current.teaseLine,
     variant: isCorrect ? 'good' : 'bad',
     onRetry: () => {
@@ -80,9 +107,6 @@ function handleJudge(guessChanged) {
     },
   });
 }
-
-judgeChangedBtn.addEventListener('click', () => handleJudge(true));
-judgeSameBtn.addEventListener('click', () => handleJudge(false));
 
 export async function mountBangs() {
   await loadData();
