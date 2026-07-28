@@ -1,122 +1,106 @@
 [
   {
-    "id": "isogaba-maware",
-    "situation": "会社に急いで向かう朝、遠回りだけど渋滞のない裏道と、近道だけど毎回渋滞する大通りがある。実は裏道を使った方が早く着く。",
-    "choices": ["急がば回れ", "石の上にも三年", "灯台下暗し", "二兎を追う者は一兎をも得ず"],
-    "answerIndex": 0
+    "id": "eggs-in-basket",
+    "situation": "給料が出た。まとまった額を投資に回そうと思っている。",
+    "choices": [
+      "全額をひとつの投資先に一気に入れる",
+      "いくつかの投資先に分けて入れる",
+      "何もせず銀行に預けたままにする"
+    ],
+    "answerIndex": 1,
+    "proverbEn": "Don't put all your eggs in one basket.",
+    "proverbJa": "卵は一つのかごに盛るな",
+    "explanation": "卵を1つのかごにまとめて運ぶと、転んだ瞬間に全部割れてしまう。かごを分けておけば被害は一部で済む、というリスク分散の教え。"
   },
   {
-    "id": "ishi-no-ue-ni-mo-sannen",
-    "situation": "新しい趣味を始めて最初の半年は全然うまくならず心が折れかけたが、3年続けたらいつの間にか誰よりも上達していた。",
-    "choices": ["石の上にも三年", "光陰矢の如し", "良薬は口に苦し", "七転び八起き"],
-    "answerIndex": 0
+    "id": "squeaky-wheel",
+    "situation": "オフィスの空調がずっと壊れているが、周りは誰も何も言わずに我慢している。",
+    "choices": [
+      "自分も黙って我慢する",
+      "上司にはっきり伝える",
+      "我慢しつつ独り言で愚痴る"
+    ],
+    "answerIndex": 1,
+    "proverbEn": "The squeaky wheel gets the grease.",
+    "proverbJa": "きしむ車輪は油を差してもらえる",
+    "explanation": "黙って我慢している車輪(=人)には誰も気づかない。声を上げて初めて、対応してもらえる。遠慮より主張が推奨される考え方。"
   },
   {
-    "id": "saru-mo-ki-kara-ochiru",
-    "situation": "ベテランの料理人が、何百回も作ってきた得意料理でうっかり塩を入れ忘れた。",
-    "choices": ["猿も木から落ちる", "出る杭は打たれる", "案ずるより産むが易し", "蓼食う虫も好き好き"],
-    "answerIndex": 0
+    "id": "watched-pot",
+    "situation": "電子レンジで料理を温めている間、扉の前でずっと様子を見ている。",
+    "choices": [
+      "温まるまでレンジの前でずっと見ている",
+      "その間に他の家事を済ませる",
+      "何度も扉を開けて様子を確認する"
+    ],
+    "answerIndex": 1,
+    "proverbEn": "A watched pot never boils.",
+    "proverbJa": "見ている鍋は煮えない",
+    "explanation": "鍋(レンジ)を見つめていても早く煮えるわけではなく、体感時間が長くなるだけ。待っている間は他のことをした方が得、という教え。"
   },
   {
-    "id": "tade-kuu-mushi-mo-sukizuki",
-    "situation": "誰もが「まずい」と口を揃える激辛激苦のお菓子を、友人だけは「これが一番好き」と言って毎回買っている。",
-    "choices": ["蓼食う虫も好き好き", "花より団子", "帯に短し襷に長し", "情けは人の為ならず"],
-    "answerIndex": 0
+    "id": "if-it-aint-broke",
+    "situation": "古いが不具合なく動いているノートパソコンを、流行っているからという理由で買い替えようか悩んでいる。",
+    "choices": [
+      "流行りに合わせてすぐ買い替える",
+      "壊れるまで今のを使い続ける",
+      "とりあえず新しいのを見に行くだけ行く"
+    ],
+    "answerIndex": 1,
+    "proverbEn": "If it ain't broke, don't fix it.",
+    "proverbJa": "壊れていないなら直すな",
+    "explanation": "問題なく動いているものに手を加える必要はない、という合理主義的な発想。流行や気分だけで変える必要はない。"
   },
   {
-    "id": "nito-wo-oumono",
-    "situation": "資格試験の勉強と副業の立ち上げを同時に始めたら、どちらも中途半端になり結局両方とも失敗した。",
-    "choices": ["二兎を追う者は一兎をも得ず", "三人寄れば文殊の知恵", "転ばぬ先の杖", "井の中の蛙大海を知らず"],
-    "answerIndex": 0
+    "id": "beggars-choosers",
+    "situation": "友人からお下がりの家具を無料でもらったが、色があまり好みではない。",
+    "choices": [
+      "好みじゃないので断る",
+      "色は気にせずありがたく使う",
+      "塗り直してくれと友人に頼む"
+    ],
+    "answerIndex": 1,
+    "proverbEn": "Beggars can't be choosers.",
+    "proverbJa": "もらう立場の人間は選べない",
+    "explanation": "対価を払わず受け取る側は、内容にあれこれ注文をつける立場にない、という考え方。もらいものには文句を言わない。"
   },
   {
-    "id": "todai-moto-kurashi",
-    "situation": "探し物を家中くまなく探し回ったが、実はずっと自分のポケットの中に入っていた。",
-    "choices": ["灯台下暗し", "急がば回れ", "覆水盆に返らず", "光陰矢の如し"],
-    "answerIndex": 0
+    "id": "dont-judge-book",
+    "situation": "見た目がいかつく怖そうな人が、近所に新しく引っ越してきた。",
+    "choices": [
+      "関わらないようにする",
+      "挨拶して話しかけてみる",
+      "遠くから様子をうかがう"
+    ],
+    "answerIndex": 1,
+    "proverbEn": "Don't judge a book by its cover.",
+    "proverbJa": "表紙で本を判断するな",
+    "explanation": "見た目の印象だけで中身を決めつけるな、という教え。実際に話してみないと、その人がどんな人かはわからない。"
   },
   {
-    "id": "saiou-ga-uma",
-    "situation": "志望していた会社に落ちて落ち込んでいたら、その会社は半年後に倒産し、別の会社に受かっていた自分は難を逃れた。",
-    "choices": ["塞翁が馬", "案ずるより産むが易し", "良薬は口に苦し", "七転び八起き"],
-    "answerIndex": 0
+    "id": "curiosity-killed-cat",
+    "situation": "同僚のデスクに気になる書類が置いてあり、こっそり覗きたい衝動に駆られている。",
+    "choices": [
+      "こっそり中身を覗く",
+      "見ないようにする",
+      "同僚に何の書類か直接聞く"
+    ],
+    "answerIndex": 1,
+    "proverbEn": "Curiosity killed the cat.",
+    "proverbJa": "好奇心は猫をも殺す",
+    "explanation": "詮索好きが身を滅ぼすこともある、という戒め。気になっても首を突っ込まない方がいいことは案外多い。"
   },
   {
-    "id": "fukusui-bon-ni-kaerazu",
-    "situation": "勢いで送ってしまったメールを、送信直後にどれだけ後悔しても取り消すことはできない。",
-    "choices": ["覆水盆に返らず", "石の上にも三年", "蓼食う虫も好き好き", "出る杭は打たれる"],
-    "answerIndex": 0
-  },
-  {
-    "id": "anzuru-yori-umu-ga-yasushi",
-    "situation": "人前で話すのが怖くて何日も緊張していたが、いざ壇上に立ったら思ったよりあっさり話せた。",
-    "choices": ["案ずるより産むが易し", "二兎を追う者は一兎をも得ず", "灯台下暗し", "帯に短し襷に長し"],
-    "answerIndex": 0
-  },
-  {
-    "id": "keizoku-wa-chikara-nari",
-    "situation": "1日5分の筋トレを1年続けたら、気づけば体型が別人のように変わっていた。",
-    "choices": ["継続は力なり", "急がば回れ", "花より団子", "井の中の蛙大海を知らず"],
-    "answerIndex": 0
-  },
-  {
-    "id": "sannin-yoreba-monju-no-chie",
-    "situation": "一人では思いつかなかったアイデアが、3人で雑談していたらあっという間にまとまった。",
-    "choices": ["三人寄れば文殊の知恵", "猿も木から落ちる", "転ばぬ先の杖", "覆水盆に返らず"],
-    "answerIndex": 0
-  },
-  {
-    "id": "deru-kui-wa-utareru",
-    "situation": "新人なのに目立つ成果を上げたら、周りの先輩たちから何かと厳しく当たられるようになった。",
-    "choices": ["出る杭は打たれる", "塞翁が馬", "光陰矢の如し", "良薬は口に苦し"],
-    "answerIndex": 0
-  },
-  {
-    "id": "kouin-ya-no-gotoshi",
-    "situation": "つい先日入社したと思っていたのに、気づけばもう10年が経っていた。",
-    "choices": ["光陰矢の如し", "石の上にも三年", "蓼食う虫も好き好き", "案ずるより産むが易し"],
-    "answerIndex": 0
-  },
-  {
-    "id": "i-no-naka-no-kawazu",
-    "situation": "自分の職場のやり方が世界一だと信じていたが、転職してみたら他にもっと良い方法がいくらでもあった。",
-    "choices": ["井の中の蛙大海を知らず", "二兎を追う者は一兎をも得ず", "花より団子", "七転び八起き"],
-    "answerIndex": 0
-  },
-  {
-    "id": "ryouyaku-wa-kuchi-ni-nigashi",
-    "situation": "友人からもらった手厳しいダメ出しは聞いていて辛かったが、後から思い返すと一番役に立つアドバイスだった。",
-    "choices": ["良薬は口に苦し", "灯台下暗し", "出る杭は打たれる", "継続は力なり"],
-    "answerIndex": 0
-  },
-  {
-    "id": "nasake-wa-hito-no-tame-narazu",
-    "situation": "見返りを期待せず困っている人を助けていたら、何年も後に自分が困ったときに、その恩が巡り巡って返ってきた。",
-    "choices": ["情けは人の為ならず", "覆水盆に返らず", "急がば回れ", "帯に短し襷に長し"],
-    "answerIndex": 0
-  },
-  {
-    "id": "korobanu-saki-no-tsue",
-    "situation": "台風が来る前日のうちに懐中電灯と水を用意しておいたおかげで、停電しても慌てずに済んだ。",
-    "choices": ["転ばぬ先の杖", "案ずるより産むが易し", "猿も木から落ちる", "三人寄れば文殊の知恵"],
-    "answerIndex": 0
-  },
-  {
-    "id": "obi-ni-mijikashi-tasuki-ni-nagashi",
-    "situation": "セールで買った布が、ベルトにするには短すぎ、たすき掛けにするには長すぎて、結局どちらにも使えなかった。",
-    "choices": ["帯に短し襷に長し", "井の中の蛙大海を知らず", "光陰矢の如し", "情けは人の為ならず"],
-    "answerIndex": 0
-  },
-  {
-    "id": "hana-yori-dango",
-    "situation": "花見に誘われて出かけたのに、桜はそこそこに、みんな早々に宴会の食べ物の方に夢中になっていた。",
-    "choices": ["花より団子", "塞翁が馬", "良薬は口に苦し", "出る杭は打たれる"],
-    "answerIndex": 0
-  },
-  {
-    "id": "nanakorobi-yaoki",
-    "situation": "起業して6回失敗して周りに笑われたが、7回目の挑戦でついに軌道に乗った。",
-    "choices": ["七転び八起き", "継続は力なり", "二兎を追う者は一兎をも得ず", "覆水盆に返らず"],
-    "answerIndex": 0
+    "id": "no-use-crying-over-spilled-milk",
+    "situation": "高かった服にうっかりシミをつけてしまった。",
+    "choices": [
+      "ずっと落ち込んで後悔し続ける",
+      "気持ちを切り替える",
+      "クリーニング店に猛抗議する"
+    ],
+    "answerIndex": 1,
+    "proverbEn": "There's no use crying over spilled milk.",
+    "proverbJa": "こぼれたミルクを嘆いても仕方ない",
+    "explanation": "こぼれてしまったミルクはもう戻らない。終わったことをいつまでも悔やんでも仕方ない、という切り替えの教え。"
   }
 ]

@@ -10,6 +10,14 @@
   margin: 0;
 }
 
+.proverb-question {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--accent-dark);
+  text-align: center;
+  margin: -6px 0 0;
+}
+
 .proverb-choices {
   display: flex;
   flex-direction: column;
@@ -43,4 +51,35 @@
   background: var(--bad-soft);
   border-color: var(--bad);
   color: var(--bad);
+}
+
+.proverb-reveal {
+  background: var(--accent-soft);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.proverb-en {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin: 0;
+  font-size: 14.5px;
+}
+
+.proverb-ja {
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+  font-size: 13.5px;
+}
+
+.proverb-explanation {
+  color: var(--ink-soft);
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.7;
 }
