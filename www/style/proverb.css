@@ -5,10 +5,9 @@
   color: var(--ink);
   background: var(--bg-card);
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 14px;
   padding: 20px;
   margin: 0;
-  box-shadow: var(--shadow);
 }
 
 .proverb-choices {

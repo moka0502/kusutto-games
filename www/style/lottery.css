@@ -1,8 +1,7 @@
 .mode-switch {
   display: flex;
-  gap: 8px;
-  background: var(--bg-card);
-  border: 1px solid var(--line);
+  gap: 4px;
+  background: var(--track);
   border-radius: 999px;
   padding: 4px;
 }
@@ -12,23 +11,24 @@
   border: none;
   background: transparent;
   color: var(--ink-soft);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 13.5px;
   padding: 9px 12px;
   border-radius: 999px;
 }
 
 .mode-chip.active {
-  background: var(--accent);
-  color: #fff8ed;
+  background: var(--bg-card);
+  color: var(--accent);
+  font-weight: 700;
+  box-shadow: var(--shadow);
 }
 
 .lottery-puzzle-card {
   background: var(--bg-card);
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: 14px;
   padding: 22px 20px;
-  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   gap: 16px;
