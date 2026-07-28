@@ -23,3 +23,12 @@
 ## 検証方法
 
 `index.html` を `file://` で直接開かない(JSONの `fetch` がCORSで失敗する)。必ず `npm run dev`(`serve www -l 3000`)経由で `http://localhost:3000` を確認すること。
+
+## デプロイ(GitHub Pages)
+
+- 公開URL: https://moka0502.github.io/kusutto-games/ 。`.github/workflows/deploy-pages.yml` により `master` へのpushで自動デプロイされる(`actions/upload-pages-artifact` の `path: www` を公開)
+- この構成を初めてセットアップする手順(他プロジェクトへ同様の構成を作る際も同じ手順を踏む):
+  1. `gh auth login` でGitHub CLIを認証させておく(未認証だとPagesの有効化状況の確認や設定変更を代行できず、ユーザーに都度手動操作を依頼することになる)
+  2. 無料枠のGitHub Pagesはpublicリポジトリでないと有効化できない(privateのままだとGitHub Enterpriseが必要)。**リポジトリの秘密情報の有無を確認した上で、publicにするかどうかを必ずユーザーに確認してから**変更する(2026-07-28、確認なしに進めず選択肢を提示して合意を取った)
+  3. `.github/workflows/deploy-pages.yml` を追加(`actions/configure-pages` → `actions/upload-pages-artifact`(`path: www`)→ `actions/deploy-pages`)してpush
+  4. リポジトリの Settings > Pages > Source を「GitHub Actions」に変更(初回のみ手動、gh CLI認証済みなら`gh api`経由でも可)
