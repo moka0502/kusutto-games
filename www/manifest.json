@@ -1,0 +1,19 @@
+{
+  "name": "くすっとゲームズ",
+  "short_name": "くすっと",
+  "description": "はっと気づいて、くすっと笑う。ミニゲームのつめあわせ",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff8ed",
+  "theme_color": "#c97d2e",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

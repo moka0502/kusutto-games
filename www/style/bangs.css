@@ -1,0 +1,59 @@
+.bangs-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  padding: 12px 4px;
+}
+
+.bangs-instruction, .bangs-question {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.bangs-timer {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--accent);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.bangs-visual {
+  width: 84px;
+  margin: 4px auto;
+}
+
+.bangs-visual::before {
+  content: '';
+  display: block;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 3px solid var(--ink-soft);
+}
+
+.bangs-visual::after {
+  content: '';
+  display: block;
+  width: 84px;
+  height: calc(20px + var(--bangs-length, 40) * 1px);
+  margin: -18px auto 0;
+  background: var(--ink);
+  border-radius: 0 0 42px 42px;
+  transition: height 0.3s ease;
+}
+
+.bangs-judge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}

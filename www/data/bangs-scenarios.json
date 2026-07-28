@@ -1,0 +1,10 @@
+[
+  { "id": "s01", "beforeLength": 40, "afterLength": 40, "changed": false, "teaseLine": "…え、見間違えた？その集中力、他で使おう？" },
+  { "id": "s02", "beforeLength": 40, "afterLength": 55, "changed": true,  "teaseLine": "伸びてます。もう少し人をよく見て。" },
+  { "id": "s03", "beforeLength": 55, "afterLength": 55, "changed": false, "teaseLine": "そう、変わってません。自信持っていいですよ。" },
+  { "id": "s04", "beforeLength": 35, "afterLength": 41, "changed": true,  "teaseLine": "たった6ミリの変化、よく気づきましたね…って気づいてました？" },
+  { "id": "s05", "beforeLength": 60, "afterLength": 45, "changed": true,  "teaseLine": "切ったんです。伸びたんじゃなくて切ったんです。" },
+  { "id": "s06", "beforeLength": 45, "afterLength": 45, "changed": false, "teaseLine": "本当に何も変わってません。むしろ聞かれて動揺したでしょう。" },
+  { "id": "s07", "beforeLength": 30, "afterLength": 50, "changed": true,  "teaseLine": "だいぶ伸びてます。前髪、そろそろ限界では。" },
+  { "id": "s08", "beforeLength": 65, "afterLength": 63, "changed": false, "teaseLine": "誤差の範囲です。変わってないと言っていいでしょう。" }
+]

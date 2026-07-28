@@ -1,0 +1,47 @@
+.proverb-situation {
+  font-size: 16.5px;
+  line-height: 1.8;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 0;
+  box-shadow: var(--shadow);
+}
+
+.proverb-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.proverb-choice {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: left;
+  transition: transform 0.1s ease;
+}
+
+.proverb-choice:not(:disabled):active { transform: translateY(1px); }
+
+.proverb-choice:disabled { cursor: default; }
+
+.proverb-choice.is-correct,
+.proverb-choice.is-correct-reveal {
+  background: var(--good-soft);
+  border-color: var(--good);
+  color: var(--good);
+}
+
+.proverb-choice.is-wrong {
+  background: var(--bad-soft);
+  border-color: var(--bad);
+  color: var(--bad);
+}
