@@ -19,7 +19,7 @@ export const ICONS = {
   gift: '<rect x="4" y="9" width="16" height="11" rx="1"/><rect x="2" y="6" width="20" height="4" rx="1"/><line x1="12" y1="6" x2="12" y2="20"/><path d="M12 6c-2-4-7-3-6 0M12 6c2-4 7-3 6 0"/>',
   book: '<path d="M4 5c3-1.5 6-1.5 8 0v14c-2-1.5-5-1.5-8 0z"/><path d="M20 5c-3-1.5-6-1.5-8 0v14c2-1.5 5-1.5 8 0z"/>',
   eye: '<path d="M2 12c2.5-5 7-8 10-8s7.5 3 10 8c-2.5 5-7 8-10 8s-7.5-3-10-8z"/><circle cx="12" cy="12" r="3"/>',
-  calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="7" y1="3" x2="7" y2="7"/><line x1="17" y1="3" x2="17" y2="7"/><circle cx="8" cy="14" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="14" r="1" fill="currentColor" stroke="none"/>',
+  hand: '<path d="M8 12V4.5a1.5 1.5 0 0 1 3 0V11M11 11V3a1.5 1.5 0 0 1 3 0v8M14 11V4.5a1.5 1.5 0 0 1 3 0V12"/><path d="M8 12l-1.5-1.5A1.5 1.5 0 0 0 4 11.6C4 15 5 20 10.5 20h2c4 0 5.5-2.5 5.5-6v-2"/>',
 };
 
 const DEFAULT_ATTRS = {

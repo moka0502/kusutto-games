@@ -68,8 +68,8 @@
     "mode": "gambler",
     "icon": "droplet",
     "label": "血液型がAB型の人に出会う",
-    "odds": 30,
-    "note": "日本人のAB型比率 約10%(日本赤十字社等の統計に基づく概数)"
+    "odds": 10,
+    "note": "日本人のAB型比率 約10%。出典: 岐阜県赤十字血液センター(日本赤十字社)"
   },
   {
     "id": "birthday-match",
@@ -104,28 +104,20 @@
     "note": "米ゴルフレジスター発表値とされる。プロはもっと高確率(約1/3000〜3700)"
   },
   {
-    "id": "season-born",
+    "id": "blood-a",
     "mode": "general",
-    "icon": "calendar",
-    "label": "特定の季節(春夏秋冬のいずれか)に生まれる",
-    "odds": 4,
-    "note": "暦上1年を4等分した定義値"
+    "icon": "droplet",
+    "label": "血液型がA型の人に出会う",
+    "odds": 2.5,
+    "note": "日本人のA型比率 約40%。出典: 岐阜県赤十字血液センター(日本赤十字社)"
   },
   {
-    "id": "weekday-born",
+    "id": "blood-o",
     "mode": "general",
-    "icon": "calendar",
-    "label": "特定の曜日に生まれる",
-    "odds": 7,
-    "note": "暦上1週間は7日という定義値"
-  },
-  {
-    "id": "month-born",
-    "mode": "general",
-    "icon": "calendar",
-    "label": "特定の月に生まれる",
-    "odds": 12,
-    "note": "暦上1年は12か月という定義値"
+    "icon": "droplet",
+    "label": "血液型がO型の人に出会う",
+    "odds": 3.33,
+    "note": "日本人のO型比率 約30%。出典: 岐阜県赤十字血液センター(日本赤十字社)"
   },
   {
     "id": "blood-b",
@@ -133,6 +125,30 @@
     "icon": "droplet",
     "label": "血液型がB型の人に出会う",
     "odds": 5,
-    "note": "日本人のB型比率 約20%(日本赤十字社等の統計に基づく概数)"
+    "note": "日本人のB型比率 約20%。出典: 岐阜県赤十字血液センター(日本赤十字社)"
+  },
+  {
+    "id": "blood-ab-general",
+    "mode": "general",
+    "icon": "droplet",
+    "label": "血液型がAB型の人に出会う",
+    "odds": 10,
+    "note": "日本人のAB型比率 約10%。出典: 岐阜県赤十字血液センター(日本赤十字社)"
+  },
+  {
+    "id": "lefthanded",
+    "mode": "general",
+    "icon": "hand",
+    "label": "左利きの人に出会う",
+    "odds": 9.1,
+    "note": "日本人の左利きの割合は約11%という調査結果に基づく(世界平均は約10%)"
+  },
+  {
+    "id": "rh-negative",
+    "mode": "general",
+    "icon": "droplet",
+    "label": "Rhマイナス型の人に出会う",
+    "odds": 200,
+    "note": "日本人のRh陰性は約0.5%(200人に1人)。出典: 兵庫県赤十字血液センター(日本赤十字社)"
   }
 ]
