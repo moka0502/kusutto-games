@@ -149,22 +149,26 @@ function renderPuzzle() {
     sentenceEl.appendChild(buildBlankSelect(pool, 0));
     sentenceEl.append('の方が、確率が高いです。');
   } else {
-    sentenceEl.append('身近な激レアでたとえると…『');
-    sentenceEl.appendChild(buildBlankSelect(pool, 0));
-    sentenceEl.append('』の確率 × 『');
-    sentenceEl.appendChild(buildBlankSelect(pool, 1));
-    sentenceEl.append('』の確率、とだいたい同じくらいレアです。');
+    sentenceEl.append('身近な激レアでたとえると…');
+    puzzle.componentIds.forEach((_, i) => {
+      if (i > 0) sentenceEl.append(' × ');
+      sentenceEl.append('『');
+      sentenceEl.appendChild(buildBlankSelect(pool, i));
+      sentenceEl.append('』の確率');
+    });
+    sentenceEl.append('、とだいたい同じくらいレアです。');
   }
 }
 
-function renderBreakdown(componentIds) {
+function renderBreakdown(pool, correctIds) {
   breakdownEl.innerHTML = '';
-  for (const id of componentIds) {
-    const comp = findComponent(id);
+  const sorted = pool.slice().sort((a, b) => a.odds - b.odds);
+  for (const comp of sorted) {
+    const isCorrect = correctIds.includes(comp.id);
     const item = document.createElement('div');
-    item.className = 'breakdown-item';
+    item.className = `breakdown-item${isCorrect ? ' is-correct' : ''}`;
     item.innerHTML = `
-      <p class="breakdown-label">${comp.label}</p>
+      <p class="breakdown-label">${isCorrect ? '✓ ' : ''}${comp.label}</p>
       <p class="breakdown-odds">${formatOdds(comp.odds)}</p>
       <p class="breakdown-note">${comp.note}</p>
     `;
@@ -172,19 +176,25 @@ function renderBreakdown(componentIds) {
   }
 }
 
+const RATIO_TOLERANCE = 0.2;
+
 function showBreakdownAndRatio() {
   const puzzle = currentPuzzle;
   const target = findTarget(puzzle.targetId);
   const correctIds = puzzle.componentIds;
+  const pool = components.filter((c) => c.mode === puzzle.mode);
 
-  renderBreakdown(correctIds);
+  renderBreakdown(pool, correctIds);
 
   const correctComponents = correctIds.map(findComponent);
   const product = correctComponents.reduce((acc, c) => acc * c.odds, 1);
   const ratio = target.odds / product;
 
   ratioEl.classList.remove('hidden');
-  if (ratio >= 1) {
+  if (Math.abs(ratio - 1) <= RATIO_TOLERANCE) {
+    const diffPct = Math.round(Math.abs(ratio - 1) * 100);
+    ratioEl.textContent = `掛け算だと${formatOdds(product)}相当。宝くじ(${formatOdds(target.odds)})とだいたい同じくらいのレアさです(誤差約${diffPct}%)。`;
+  } else if (ratio > 1) {
     ratioEl.textContent = `宝くじの方が、まだ約${Math.round(ratio).toLocaleString('ja-JP')}倍当たりにくいです(掛け算だと${formatOdds(product)}相当)。`;
   } else {
     ratioEl.textContent = `こちらの方が、宝くじよりまだ約${Math.round(1 / ratio).toLocaleString('ja-JP')}倍当たりやすいです。`;

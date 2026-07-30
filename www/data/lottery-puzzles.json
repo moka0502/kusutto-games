@@ -3,8 +3,8 @@
   { "id": "p02", "mode": "general", "targetId": "summer-jumbo-2026", "componentIds": ["meteorite-death"] },
   { "id": "p03", "mode": "general", "targetId": "winter-jumbo-2025", "componentIds": ["shark-death"] },
   { "id": "p04", "mode": "general", "targetId": "loto7", "componentIds": ["hole-in-one"] },
-  { "id": "p05", "mode": "gambler", "targetId": "loto6", "componentIds": ["garo-hit", "hananokeiji-sv-hit"] },
-  { "id": "p06", "mode": "gambler", "targetId": "loto7", "componentIds": ["garo-hit", "oumi5-hit"] },
-  { "id": "p07", "mode": "gambler", "targetId": "summer-jumbo-2026", "componentIds": ["hananokeiji-sv-hit", "hananokeiji-amadegi-hit"] },
-  { "id": "p08", "mode": "gambler", "targetId": "winter-jumbo-2025", "componentIds": ["garo-hit", "hananokeiji-amadegi-hit"] }
+  { "id": "p05", "mode": "gambler", "targetId": "loto6", "componentIds": ["coin-4heads", "die-two6", "blood-ab", "birthday-match"] },
+  { "id": "p06", "mode": "gambler", "targetId": "loto7", "componentIds": ["coin-4heads", "die-two6", "card-specific", "birthday-match"] },
+  { "id": "p07", "mode": "gambler", "targetId": "summer-jumbo-2026", "componentIds": ["coin-4heads", "coin-5heads", "card-specific", "birthday-match"] },
+  { "id": "p08", "mode": "gambler", "targetId": "winter-jumbo-2025", "componentIds": ["die-two6", "card-specific", "blood-ab", "birthday-match"] }
 ]
