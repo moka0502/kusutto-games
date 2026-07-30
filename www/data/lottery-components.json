@@ -102,5 +102,37 @@
     "label": "ゴルフでホールインワンを出す(平均的なゴルファー)",
     "odds": 33000,
     "note": "米ゴルフレジスター発表値とされる。プロはもっと高確率(約1/3000〜3700)"
+  },
+  {
+    "id": "season-born",
+    "mode": "general",
+    "icon": "calendar",
+    "label": "特定の季節(春夏秋冬のいずれか)に生まれる",
+    "odds": 4,
+    "note": "暦上1年を4等分した定義値"
+  },
+  {
+    "id": "weekday-born",
+    "mode": "general",
+    "icon": "calendar",
+    "label": "特定の曜日に生まれる",
+    "odds": 7,
+    "note": "暦上1週間は7日という定義値"
+  },
+  {
+    "id": "month-born",
+    "mode": "general",
+    "icon": "calendar",
+    "label": "特定の月に生まれる",
+    "odds": 12,
+    "note": "暦上1年は12か月という定義値"
+  },
+  {
+    "id": "blood-b",
+    "mode": "general",
+    "icon": "droplet",
+    "label": "血液型がB型の人に出会う",
+    "odds": 5,
+    "note": "日本人のB型比率 約20%(日本赤十字社等の統計に基づく概数)"
   }
 ]
