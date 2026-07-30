@@ -1,6 +1,7 @@
 [
   {
     "id": "eggs-in-basket",
+    "icon": "basket",
     "situation": "給料が出た。まとまった額を投資に回そうと思っている。",
     "choices": [
       "全額をひとつの投資先に一気に入れる",
@@ -14,6 +15,7 @@
   },
   {
     "id": "squeaky-wheel",
+    "icon": "wheel",
     "situation": "オフィスの空調がずっと壊れているが、周りは誰も何も言わずに我慢している。",
     "choices": [
       "自分も黙って我慢する",
@@ -27,6 +29,7 @@
   },
   {
     "id": "watched-pot",
+    "icon": "clock",
     "situation": "電子レンジで料理を温めている間、扉の前でずっと様子を見ている。",
     "choices": [
       "温まるまでレンジの前でずっと見ている",
@@ -40,6 +43,7 @@
   },
   {
     "id": "if-it-aint-broke",
+    "icon": "wrench",
     "situation": "古いが不具合なく動いているノートパソコンを、流行っているからという理由で買い替えようか悩んでいる。",
     "choices": [
       "流行りに合わせてすぐ買い替える",
@@ -53,6 +57,7 @@
   },
   {
     "id": "beggars-choosers",
+    "icon": "gift",
     "situation": "友人からお下がりの家具を無料でもらったが、色があまり好みではない。",
     "choices": [
       "好みじゃないので断る",
@@ -66,6 +71,7 @@
   },
   {
     "id": "dont-judge-book",
+    "icon": "book",
     "situation": "見た目がいかつく怖そうな人が、近所に新しく引っ越してきた。",
     "choices": [
       "関わらないようにする",
@@ -79,6 +85,7 @@
   },
   {
     "id": "curiosity-killed-cat",
+    "icon": "eye",
     "situation": "同僚のデスクに気になる書類が置いてあり、こっそり覗きたい衝動に駆られている。",
     "choices": [
       "こっそり中身を覗く",
@@ -92,6 +99,7 @@
   },
   {
     "id": "no-use-crying-over-spilled-milk",
+    "icon": "droplet",
     "situation": "高かった服にうっかりシミをつけてしまった。",
     "choices": [
       "ずっと落ち込んで後悔し続ける",

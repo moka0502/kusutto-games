@@ -1,5 +1,6 @@
 import { showResult } from '../common/result.js';
 import { showScreen } from '../common/screens.js';
+import { createIcon } from '../common/icons.js';
 
 const QUESTIONS_PER_ROUND = 5;
 
@@ -10,6 +11,7 @@ let currentIndex = 0;
 let correctCount = 0;
 let answering = false;
 
+const iconEl = document.getElementById('proverb-icon');
 const situationEl = document.getElementById('proverb-situation');
 const choicesEl = document.getElementById('proverb-choices');
 const progressEl = document.getElementById('proverb-progress');
@@ -35,6 +37,7 @@ function shuffle(array) {
 function buildSession() {
   const picked = shuffle(allQuestions).slice(0, Math.min(QUESTIONS_PER_ROUND, allQuestions.length));
   session = picked.map((q) => ({
+    icon: q.icon,
     situation: q.situation,
     proverbEn: q.proverbEn,
     proverbJa: q.proverbJa,
@@ -49,6 +52,9 @@ function renderQuestion() {
   nextBtn.classList.add('hidden');
 
   const q = session[currentIndex];
+  iconEl.innerHTML = '';
+  const icon = createIcon(q.icon, 'proverb-icon-svg');
+  if (icon) iconEl.appendChild(icon);
   situationEl.textContent = q.situation;
   progressEl.textContent = `${currentIndex + 1} / ${session.length}`;
 

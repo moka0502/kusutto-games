@@ -1,3 +1,15 @@
+.proverb-icon {
+  display: flex;
+  justify-content: center;
+  color: var(--accent);
+  margin: 4px 0 -4px;
+}
+
+.proverb-icon-svg {
+  width: 44px;
+  height: 44px;
+}
+
 .proverb-situation {
   font-size: 16.5px;
   line-height: 1.8;
