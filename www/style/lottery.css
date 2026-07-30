@@ -91,6 +91,11 @@
   color: var(--accent-dark);
 }
 
+.blank-chip-edit-hint {
+  font-size: 0.85em;
+  opacity: 0.6;
+}
+
 .lottery-choice-bank {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -119,8 +124,9 @@
 }
 
 .choice-card.is-used {
-  opacity: 0.35;
-  pointer-events: none;
+  opacity: 0.55;
+  border-style: dashed;
+  border-color: var(--accent);
 }
 
 /* ---- Answer ---- */

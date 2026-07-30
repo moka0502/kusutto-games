@@ -130,18 +130,37 @@ function updateBlankChip(blankIndex) {
   const icon = createIcon(comp.icon, 'blank-chip-icon');
   if (icon) chip.appendChild(icon);
   chip.append(comp.label);
+  const editHint = document.createElement('span');
+  editHint.className = 'blank-chip-edit-hint';
+  editHint.textContent = '✎';
+  chip.appendChild(editHint);
   chip.classList.add('is-filled');
+}
+
+function resetBlankChip(blankIndex) {
+  const chip = blankChips[blankIndex];
+  chip.innerHTML = '選んでください';
+  chip.classList.remove('is-filled');
 }
 
 function syncChoiceBankUsedState() {
   choiceBankEl.querySelectorAll('.choice-card').forEach((card) => {
     const used = selections.includes(card.dataset.id);
     card.classList.toggle('is-used', used);
-    card.disabled = used;
   });
 }
 
 function handleChoiceCardClick(componentId) {
+  const usedIndex = selections.indexOf(componentId);
+  if (usedIndex !== -1) {
+    // すでにどこかの空欄に入っているカードを再タップ→その空欄を空にして選び直せるようにする
+    selections[usedIndex] = null;
+    resetBlankChip(usedIndex);
+    syncChoiceBankUsedState();
+    checkBtn.disabled = selections.some((s) => !s);
+    setActiveBlank(usedIndex);
+    return;
+  }
   if (activeBlankIndex === null) return;
   selections[activeBlankIndex] = componentId;
   updateBlankChip(activeBlankIndex);
