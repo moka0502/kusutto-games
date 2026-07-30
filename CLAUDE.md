@@ -14,10 +14,11 @@
 
 ## データスキーマ(一次情報源はこのファイル)
 
-- `www/data/lottery-targets.json`: `{ id, label, odds, note }[]`。宝くじ側のターゲット(ジャンボ宝くじ・ロト等)。`odds`は分母の数値(確率1/oddsのoddsの部分)、`note`に出典を明記する
-- `www/data/lottery-components.json`: `{ id, mode: "general"|"gambler", label, odds, note }[]`。言い換えに使う事象プール。実在の確率(パチンコ実機の公表スペック、隕石死亡等の統計)のみを使い、出典不明・非公式の数値(例: 「魚群予告」のような演出上の体感確率)は採用しない
+- `www/data/lottery-targets.json`: `{ id, icon, label, odds, note }[]`。宝くじ側のターゲット(ジャンボ宝くじ・ロト等)。`odds`は分母の数値(確率1/oddsのoddsの部分)、`note`に出典を明記する
+- `www/data/lottery-components.json`: `{ id, mode: "general"|"gambler", icon, label, odds, note }[]`。言い換えに使う事象プール。実在の確率(パチンコ実機の公表スペック、隕石死亡等の統計)のみを使い、出典不明・非公式の数値(例: 「魚群予告」のような演出上の体感確率)は採用しない
+- `icon`フィールド(lottery-targets/lottery-components/proverb-quizに共通): `www/js/common/icons.js`の`ICONS`レジストリのキーを参照する。画像アセットは使わず、値は概念単位で使い回す(例: パチンコ機種4種は全部`pachinko`)。新しい事象を追加する際にふさわしいアイコンがなければ、`icons.js`にSVGパスを追記してから参照する
 - `www/data/lottery-puzzles.json`: `{ id, mode, targetId, componentIds }[]`。一般モードは`componentIds`が1件(単一事象との直接比較)。ギャンブラーモードは4件(掛け算)で、積が`targetId`の`odds`に対して誤差±20%以内に収まるよう手動で選定して固定している(実行時に組合せ探索はしない)。この誤差判定は`www/js/games/lottery.js`の`showBreakdownAndRatio()`内の`RATIO_TOLERANCE`(0.2)で行い、範囲内なら「だいたい同じくらいのレアさ」、範囲外なら「まだ何倍当たりにくい/やすい」という不等号表現にフォールバックする。ギャンブラーモードの構成要素はコイン投げ・サイコロ・トランプ・血液型比率・誕生日一致など、実在かつ検証可能な確率のみを使う(パチンコ実機オッズは1/100〜1/400の狭い帯で、掛け算だけでは宝くじ規模(1/600万〜1/2000万)に届かないため、既存の実機データは残しつつ新規の組合せには使わない)
-- `www/data/proverb-quiz.json`: `{ id, situation, choices: string[4], answerIndex }[]`。4択固定(自由記述の表記ゆれ判定は運用コストに見合わないため採用しない)。選択肢はプールからのランダム抽出ではなく問題ごとに手書き固定
+- `www/data/proverb-quiz.json`: `{ id, icon, situation, choices: string[4], answerIndex }[]`。4択固定(自由記述の表記ゆれ判定は運用コストに見合わないため採用しない)。選択肢はプールからのランダム抽出ではなく問題ごとに手書き固定
 - `www/data/bangs-scenarios.json`: `{ id, beforeLength, afterLength, changed, teaseLine }[]`。前髪の状態は実写画像でなく数値+テキストで表現(画像アセット制作コストをゼロにするため)。次フェーズでSVG自作キャラクター+難易度10段階への刷新を予定
 
 ## 検証方法

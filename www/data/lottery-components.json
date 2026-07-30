@@ -2,6 +2,7 @@
   {
     "id": "garo-hit",
     "mode": "gambler",
+    "icon": "pachinko",
     "label": "初代CR牙狼(2008年)を1回転で大当たりする",
     "odds": 397.18,
     "note": "大当たり確率1/397.18、確変(魔戒チャンス)突入率50%。サンセイアールアンドディ製"
@@ -9,6 +10,7 @@
   {
     "id": "hananokeiji-sv-hit",
     "mode": "gambler",
+    "icon": "pachinko",
     "label": "CR花の慶次-雲の彼方に-S-Vを1回転で大当たりする",
     "odds": 399.25,
     "note": "大当たり確率1/399.25、確変突入率80%。ニューギン製、2007年"
@@ -16,6 +18,7 @@
   {
     "id": "hananokeiji-amadegi-hit",
     "mode": "gambler",
+    "icon": "pachinko",
     "label": "CRA花の慶次N-V(甘デジ版)を1回転で大当たりする",
     "odds": 99.8,
     "note": "大当たり確率1/99.8、確変突入率77%。甘デジ(当たりやすい入門機)"
@@ -23,6 +26,7 @@
   {
     "id": "oumi5-hit",
     "mode": "gambler",
+    "icon": "pachinko",
     "label": "P大海物語5を1回転で大当たりする",
     "odds": 319.6,
     "note": "大当たり確率約1/319.6。「魚群予告」は公式確率ではなく演出のため、大当たり確率そのものを採用"
@@ -30,6 +34,7 @@
   {
     "id": "coin-4heads",
     "mode": "gambler",
+    "icon": "coin",
     "label": "コインを4回投げて4回とも表が出る",
     "odds": 16,
     "note": "1/2の4乗(独立試行の数学的定義)"
@@ -37,6 +42,7 @@
   {
     "id": "coin-5heads",
     "mode": "gambler",
+    "icon": "coin",
     "label": "コインを5回投げて5回とも表が出る",
     "odds": 32,
     "note": "1/2の5乗(独立試行の数学的定義)"
@@ -44,6 +50,7 @@
   {
     "id": "die-two6",
     "mode": "gambler",
+    "icon": "dice",
     "label": "サイコロを2個同時に振って2個とも狙った目が出る",
     "odds": 36,
     "note": "1/6×1/6の独立試行(数学的定義)"
@@ -51,6 +58,7 @@
   {
     "id": "card-specific",
     "mode": "gambler",
+    "icon": "card",
     "label": "トランプの山から狙った1枚を引き当てる",
     "odds": 52,
     "note": "ジョーカー抜き52枚から1枚を引く確定値"
@@ -58,6 +66,7 @@
   {
     "id": "blood-ab",
     "mode": "gambler",
+    "icon": "droplet",
     "label": "血液型がAB型の人に出会う",
     "odds": 30,
     "note": "日本人のAB型比率 約10%(日本赤十字社等の統計に基づく概数)"
@@ -65,6 +74,7 @@
   {
     "id": "birthday-match",
     "mode": "gambler",
+    "icon": "cake",
     "label": "誕生日を尋ねたら自分と同じ日だった",
     "odds": 365,
     "note": "1年365日から1日が一致する確定値(うるう年は簡略化して考慮せず)"
@@ -72,6 +82,7 @@
   {
     "id": "meteorite-death",
     "mode": "general",
+    "icon": "meteor",
     "label": "隕石で死亡する(生涯)",
     "odds": 1600000,
     "note": "米テュレーン大学の地球科学者による試算値"
@@ -79,6 +90,7 @@
   {
     "id": "shark-death",
     "mode": "general",
+    "icon": "sharkFin",
     "label": "サメに襲われて死亡する(生涯・米国)",
     "odds": 3700000,
     "note": "フロリダ自然史博物館の統計データに基づく"
@@ -86,6 +98,7 @@
   {
     "id": "hole-in-one",
     "mode": "general",
+    "icon": "golfFlag",
     "label": "ゴルフでホールインワンを出す(平均的なゴルファー)",
     "odds": 33000,
     "note": "米ゴルフレジスター発表値とされる。プロはもっと高確率(約1/3000〜3700)"

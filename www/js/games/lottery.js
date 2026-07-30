@@ -1,5 +1,6 @@
 import { showResult } from '../common/result.js';
 import { showScreen } from '../common/screens.js';
+import { createIcon } from '../common/icons.js';
 
 const SET_SIZE = 5;
 
@@ -16,12 +17,15 @@ let firstTryCorrectCount = 0;
 let currentPuzzle = null;
 let selections = [];
 let attemptedOnce = false;
+let blankChips = [];
+let activeBlankIndex = null;
 
 const modeSelectEl = document.getElementById('lottery-mode-select');
 const playEl = document.getElementById('lottery-play');
 const progressEl = document.getElementById('lottery-progress');
 const targetLabelEl = document.getElementById('lottery-target-label');
 const sentenceEl = document.getElementById('lottery-sentence');
+const choiceBankEl = document.getElementById('lottery-choice-bank');
 const checkBtn = document.getElementById('lottery-check');
 const answerEl = document.getElementById('lottery-answer');
 const verdictEl = document.getElementById('lottery-answer-verdict');
@@ -100,30 +104,67 @@ function buildSession(mode) {
   return picked;
 }
 
-function buildBlankSelect(optionsPool, blankIndex) {
-  const select = document.createElement('select');
-  select.className = 'blank-select';
+function buildBlankChip(blankIndex) {
+  const chip = document.createElement('button');
+  chip.type = 'button';
+  chip.className = 'blank-chip';
+  chip.textContent = '選んでください';
+  chip.addEventListener('click', () => setActiveBlank(blankIndex));
+  return chip;
+}
 
-  const placeholder = document.createElement('option');
-  placeholder.textContent = '選んでください';
-  placeholder.value = '';
-  placeholder.disabled = true;
-  placeholder.selected = true;
-  select.appendChild(placeholder);
+function findNextEmptyBlank() {
+  const index = selections.findIndex((s) => !s);
+  return index === -1 ? null : index;
+}
 
-  for (const comp of shuffle(optionsPool)) {
-    const opt = document.createElement('option');
-    opt.value = comp.id;
-    opt.textContent = comp.label;
-    select.appendChild(opt);
-  }
+function setActiveBlank(index) {
+  activeBlankIndex = index;
+  blankChips.forEach((chip, i) => chip.classList.toggle('is-active', i === index));
+}
 
-  select.addEventListener('change', () => {
-    selections[blankIndex] = select.value || null;
-    checkBtn.disabled = selections.some((s) => !s);
+function updateBlankChip(blankIndex) {
+  const chip = blankChips[blankIndex];
+  const comp = findComponent(selections[blankIndex]);
+  chip.innerHTML = '';
+  const icon = createIcon(comp.icon, 'blank-chip-icon');
+  if (icon) chip.appendChild(icon);
+  chip.append(comp.label);
+  chip.classList.add('is-filled');
+}
+
+function syncChoiceBankUsedState() {
+  choiceBankEl.querySelectorAll('.choice-card').forEach((card) => {
+    const used = selections.includes(card.dataset.id);
+    card.classList.toggle('is-used', used);
+    card.disabled = used;
   });
+}
 
-  return select;
+function handleChoiceCardClick(componentId) {
+  if (activeBlankIndex === null) return;
+  selections[activeBlankIndex] = componentId;
+  updateBlankChip(activeBlankIndex);
+  syncChoiceBankUsedState();
+  checkBtn.disabled = selections.some((s) => !s);
+  setActiveBlank(findNextEmptyBlank());
+}
+
+function renderChoiceBank(pool) {
+  choiceBankEl.innerHTML = '';
+  for (const comp of shuffle(pool)) {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'choice-card';
+    card.dataset.id = comp.id;
+    const icon = createIcon(comp.icon, 'choice-card-icon');
+    if (icon) card.appendChild(icon);
+    const label = document.createElement('span');
+    label.textContent = comp.label;
+    card.appendChild(label);
+    card.addEventListener('click', () => handleChoiceCardClick(comp.id));
+    choiceBankEl.appendChild(card);
+  }
 }
 
 function renderPuzzle() {
@@ -132,9 +173,13 @@ function renderPuzzle() {
   const pool = components.filter((c) => c.mode === puzzle.mode);
 
   attemptedOnce = false;
-  targetLabelEl.textContent = `${target.label}が当たる確率は ${formatOdds(target.odds)}`;
+  targetLabelEl.innerHTML = '';
+  const targetIcon = createIcon(target.icon, 'target-label-icon');
+  if (targetIcon) targetLabelEl.appendChild(targetIcon);
+  targetLabelEl.append(`${target.label}が当たる確率は ${formatOdds(target.odds)}`);
 
   selections = new Array(puzzle.componentIds.length).fill(null);
+  blankChips = [];
   checkBtn.disabled = true;
   checkBtn.classList.remove('hidden');
   answerEl.classList.add('hidden');
@@ -144,20 +189,28 @@ function renderPuzzle() {
 
   sentenceEl.innerHTML = '';
 
-  if (puzzle.mode === 'general') {
-    sentenceEl.append('身近な出来事でたとえると…');
-    sentenceEl.appendChild(buildBlankSelect(pool, 0));
-    sentenceEl.append('の方が、確率が高いです。');
-  } else {
-    sentenceEl.append('身近な激レアでたとえると…');
-    puzzle.componentIds.forEach((_, i) => {
-      if (i > 0) sentenceEl.append(' × ');
-      sentenceEl.append('『');
-      sentenceEl.appendChild(buildBlankSelect(pool, i));
-      sentenceEl.append('』の確率');
-    });
-    sentenceEl.append('、とだいたい同じくらいレアです。');
-  }
+  const lead = puzzle.mode === 'general' ? '身近な出来事でたとえると…' : '身近な激レアでたとえると…';
+  sentenceEl.append(lead);
+  sentenceEl.appendChild(document.createElement('br'));
+  puzzle.componentIds.forEach((_, i) => {
+    if (i > 0) {
+      const operator = document.createElement('span');
+      operator.className = 'sentence-operator';
+      operator.textContent = '×';
+      sentenceEl.appendChild(operator);
+      sentenceEl.appendChild(document.createElement('br'));
+    }
+    sentenceEl.append('『');
+    const chip = buildBlankChip(i);
+    blankChips.push(chip);
+    sentenceEl.appendChild(chip);
+    sentenceEl.append('』の確率');
+    sentenceEl.appendChild(document.createElement('br'));
+  });
+  sentenceEl.append('、とだいたい同じくらいレアです。');
+
+  renderChoiceBank(pool);
+  setActiveBlank(0);
 }
 
 function renderBreakdown(pool, correctIds) {
@@ -167,11 +220,16 @@ function renderBreakdown(pool, correctIds) {
     const isCorrect = correctIds.includes(comp.id);
     const item = document.createElement('div');
     item.className = `breakdown-item${isCorrect ? ' is-correct' : ''}`;
-    item.innerHTML = `
+    const icon = createIcon(comp.icon, 'breakdown-icon');
+    const body = document.createElement('div');
+    body.className = 'breakdown-body';
+    body.innerHTML = `
       <p class="breakdown-label">${isCorrect ? '✓ ' : ''}${comp.label}</p>
       <p class="breakdown-odds">${formatOdds(comp.odds)}</p>
       <p class="breakdown-note">${comp.note}</p>
     `;
+    if (icon) item.appendChild(icon);
+    item.appendChild(body);
     breakdownEl.appendChild(item);
   }
 }
