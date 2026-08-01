@@ -37,9 +37,9 @@
   left: 50%;
   transform: translateX(-50%);
   width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #f4d9b8;
+  height: 49px;
+  border-radius: 48% 48% 42% 42% / 52% 52% 48% 48%;
+  background: radial-gradient(circle at 35% 28%, #fce3c4 0%, #f4d9b8 55%, #e8c49e 100%);
   border: 2px solid var(--ink-soft);
   z-index: 2;
 }
@@ -47,10 +47,10 @@
 .bangs-avatar .avatar-head::before {
   content: '';
   position: absolute;
-  top: 20px;
+  top: 22px;
   left: 13px;
   width: 5px;
-  height: 5px;
+  height: 6px;
   border-radius: 50%;
   background: #4a3a30;
   box-shadow: 14px 0 0 #4a3a30;
@@ -59,14 +59,51 @@
 .bangs-avatar .avatar-head::after {
   content: '';
   position: absolute;
-  top: 29px;
+  top: 31px;
   left: 50%;
   transform: translateX(-50%);
   width: 12px;
   height: 6px;
-  border: 2px solid #4a3a30;
+  border: 2px solid #b06a55;
   border-top: none;
   border-radius: 0 0 10px 10px;
+}
+
+.bangs-avatar::before {
+  content: '';
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 5px;
+  border-radius: 1px;
+  background: rgba(74, 58, 48, 0.35);
+  z-index: 4;
+}
+
+.bangs-avatar::after {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 6px;
+  width: 8px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(232, 130, 130, 0.4);
+  box-shadow: 27px 0 0 rgba(232, 130, 130, 0.4);
+  z-index: 4;
+}
+
+.bangs-avatar .avatar-top::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 10px;
+  background: #eccba3;
 }
 
 .bangs-avatar .avatar-hair {
@@ -75,9 +112,22 @@
   left: 50%;
   transform: translateX(-50%);
   width: 58px;
-  height: 38px;
-  background: #3a2a20;
+  height: 40px;
+  background: linear-gradient(160deg, #4a3628, #2f2118 70%);
   border-radius: 50% 50% 45% 45% / 65% 65% 25% 25%;
+}
+
+.bangs-avatar .avatar-hair::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: 11px;
+  width: 7px;
+  height: 2px;
+  border-radius: 1px;
+  background: #5a4636;
+  box-shadow: 15px 0 0 #5a4636;
+  z-index: 4;
 }
 
 .bangs-avatar .avatar-hair::after {
@@ -88,7 +138,7 @@
   transform: translateX(-50%);
   width: 40px;
   height: calc(var(--bangs-length, 40) * 0.6px - 16px);
-  background: #3a2a20;
+  background: linear-gradient(160deg, #4a3628, #2f2118 70%);
   border-radius: 0 0 50% 50% / 0 0 70% 70%;
   transition: height 0.2s ease;
   z-index: 3;
@@ -96,12 +146,12 @@
 
 .bangs-avatar .avatar-top {
   position: absolute;
-  top: 44px;
+  top: 53px;
   left: 50%;
   transform: translateX(-50%);
-  width: 70px;
-  height: 60px;
-  border-radius: 16px 16px 8px 8px;
+  width: 72px;
+  height: 55px;
+  border-radius: 22px 22px 8px 8px;
   background: var(--top-color, #e07a5f);
   transition: background-color 0.2s ease;
   z-index: 1;
